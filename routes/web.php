@@ -1,13 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Student;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/students', function () {
+    return response()->json(Student::all());
+});
+
+// get student by id
+Route::get('/students/{id}', function ($id) {
     $data = [
+        'id' => $id,
         'name' => 'John Doe',
         'age' => 20,
         'grade' => 'A',
